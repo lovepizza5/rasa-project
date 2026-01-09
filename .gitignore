@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# PyCharm
+.idea/
+
+# Rasa cache
+.rasa/
+
+# Logs
+logs/
+
+# OS
+.DS_Store
+Thumbs.db

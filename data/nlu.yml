@@ -1,0 +1,208 @@
+#nul.yml
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - good morning
+    - bonjour
+    - greetings
+    - hi there
+    - hello there
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you later
+    - end chat
+    - thanks, bye
+    - that's all
+    - talk to you later
+    - signing off
+
+- intent: report_issue
+  examples: |
+    - I want to make a reclamation
+    - I have a problem
+    - There's something wrong
+    - Need to report something
+    - Having trouble
+    - Something is not working
+    - I need help with something
+    - Can you help me with a problem?
+    - I'm experiencing issues
+    - I need to file a complaint
+    - I want to report an issue
+
+- intent: problem_description
+  examples: |
+    - My camera is not recording [properly](problem_description)
+    - The [alarm keeps going off for no reason](problem_description)
+    - [Software crashes every time I open it](problem_description)
+    - [Access control system is not recognizing my card](problem_description)
+    - [Motion detector gives false alerts](problem_description)
+    - [Security dashboard shows connection error](problem_description)
+    - [Biometric scanner is not working](problem_description)
+    - [System rebooted unexpectedly](problem_description)
+    - [Can't access the surveillance feed](problem_description)
+    - [Notification alerts are delayed](problem_description)
+    - [Software crashed](problem_description)
+    - [My software keeps crashing](problem_description)
+    - [The app crashed](problem_description)
+    - [Program crashed unexpectedly](problem_description)
+    - [System crashed](problem_description)
+    - [Application crashed on startup](problem_description)
+    - [Software got crashed](problem_description)
+    - [It crashed](problem_description)
+    - [My software got crashed](problem_description)
+    - [Crashed](problem_description)
+
+- intent: inform
+  examples: |
+    - [melek](username)
+    - [youssef](username)
+    - [mounir](username)
+    - [mohamed](username)
+    - [ahmed](username)
+    - [ali](username)
+    - [fatima](username)
+    - [sarah](username)
+    - [test123](username)
+    - [admin01](username)
+    - [user_2024](username)
+    - my name is [melek](username)
+    - i'm [mohamed](username)
+    - username [ahmed](username)
+    - call me [ali](username)
+
+
+- intent: ask_company_info
+  examples: |
+    - Tell me about your company
+    - What does Duraprotect do?
+    - What is Duraprotect?
+    - Company information
+    - Tell me about Duraprotect
+    - What type of company are you?
+    - Tell me about your business
+    - Company background
+    - Who are you?
+
+- intent: company_history
+  examples: |
+    - When was Dura Protect founded?
+    - What is the history of your company?
+    - How did your startup begin?
+    - Who created Dura Protect?
+    - Tell me about your past
+    - What is your origin?
+
+- intent: company_services
+  examples: |
+    - Do you install security cameras?
+    - Do you provide alarm systems?
+    - What security services do you have?
+    - Do you do cybersecurity?
+    - Tell me your services
+    - What can your company do?
+    - What services are available?
+    - What do you offer?
+
+- intent: company_contact
+  examples: |
+    - How can I contact you?
+    - What is your email?
+    - How do I reach support?
+    - Contact information please
+    - Give me your support contact
+    - Where is your office?
+
+- intent: company_values
+  examples: |
+    - What are your values?
+    - What does your company believe in?
+    - Tell me your core principles
+    - What is important to Dura Protect?
+    - What do you stand for?
+
+- intent: company_mission
+  examples: |
+    - What is your mission?
+    - What is your purpose?
+    - What does your startup aim to do?
+    - What is the goal of Dura Protect?
+    - Why does your company exist?
+
+- intent: product_support
+  examples: |
+    - I need help with my camera
+    - My alarm is not working
+    - Can you help with installation?
+    - I need technical support
+    - My device is malfunctioning
+    - How do I get support?
+
+- intent: system_security_questions
+  examples: |
+    - How do you secure systems?
+    - What security measures do you use?
+    - Do you use encryption?
+    - How do you detect threats?
+    - What cybersecurity tools do you use?
+    - How is my data protected?
+
+- intent: track_reclamation
+  examples: |
+    - I want to track my reclamation
+    - Check my complaint status
+    - Where is my reclamation?
+    - Status of my report
+    - Track my issue
+    - Check my ticket
+    - What's the status of my complaint?
+    - Has my issue been resolved?
+    - Show me my reclamations
+    - My complaint status
+    - Check status of my complaint
+    - Where's my ticket?
+    - Status update please
+    - Has my issue been looked at?
+    - What's happening with my report?
+
+- intent: provide_tracking_id
+  examples: |
+    - My reclamation ID is [88](reclamation_id)
+    - ID [93](reclamation_id)
+    - number [55](reclamation_id)
+    - ticket [123](reclamation_id)
+    - [77](reclamation_id)
+    - The ID is [42](reclamation_id)
+
+# Add these intents to your existing nlu.yml
+
+- intent: provide_email
+  examples: |
+    - my email is [john@example.com](email)
+    - [support@company.com](email)
+    - email [user123@gmail.com](email)
+    - [contact@me.com](email)
+    - you can email me at [hello@world.com](email)
+    - it's [melek@duraprotect.com](email)
+    - [test@test.com](email)
+    - [admin@admin.com](email)
+
+- intent: provide_phone
+  examples: |
+    - my number is [+21612345678](phone)
+    - [555-1234](phone)
+    - phone [0123456789](phone)
+    - call me at [9876543210](phone)
+    - [+1-800-HELP](phone)
+    - [12345678](phone)
+    - [98765432](phone)
+    - my phone is [55123456](phone)
+

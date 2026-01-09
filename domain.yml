@@ -1,0 +1,238 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - report_issue
+  - problem_description
+  - inform
+  - ask_company_info
+  - company_history
+  - company_services
+  - company_contact
+  - company_values
+  - company_mission
+  - product_support
+  - system_security_questions
+  - track_reclamation
+  - provide_tracking_id
+  - provide_email
+  - provide_phone
+
+entities:
+  - username
+  - problem_description
+  - reclamation_id
+  - email
+  - phone
+
+slots:
+  username:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: username
+        intent: inform
+      - type: from_text
+        intent: inform
+        not_intent: problem_description
+
+  tracking_username:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: username
+      - type: from_text
+        conditions:
+          - active_loop: track_reclamation_form
+          - requested_slot: tracking_username
+
+  reclamation_message:
+    type: text
+    mappings:
+      - type: from_text
+        intent: problem_description
+      - type: from_entity
+        entity: problem_description
+        intent: problem_description
+
+  reclamation_id:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: reclamation_id
+        intent: provide_tracking_id
+
+  email:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: email
+        intent: provide_email
+      - type: from_text
+        intent: provide_email
+
+  phone:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: phone
+        intent: provide_phone
+      - type: from_text
+        intent: provide_phone
+
+forms:
+  reclamation_form:
+    required_slots:
+      - username
+      - reclamation_message
+      - email
+      - phone
+    ignored_intents:
+      - goodbye
+
+  track_reclamation_form:
+    required_slots:
+      - tracking_username
+      - reclamation_id
+    ignored_intents:
+      - goodbye
+
+responses:
+  utter_greet:
+    - text: "Hello! Welcome to Duraprotect Support. I can help you file a reclamation regarding our security equipment or software. How can I assist you today?"
+    - text: "Hi there! Welcome to Duraprotect. I'm here to help you with any security system issues or questions. What can I do for you?"
+    - text: "Greetings! I'm your Duraprotect support assistant. You can file reclamations, track existing ones, or ask about our services. How may I help you?"
+    - text: "Hello! Ready to assist with your Duraprotect security needs. Are you here to report an issue or need information about our services?"
+    - text: "Welcome to Duraprotect Support Center! I can assist with reclamations, product support, and company information. What brings you here today?"
+
+  utter_ask_username:
+    - text: "To start the reclamation, could you please provide your username?"
+    - text: "I'll need your username to begin the reclamation process. What's your username?"
+    - text: "Please share your username so I can start documenting your reclamation."
+    - text: "For the reclamation record, may I have your username?"
+    - text: "Let's start with your username. What username should I use for this reclamation?"
+
+  utter_ask_reclamation_message:
+    - text: "Please describe the issue you are facing with your equipment or software in detail."
+    - text: "Could you please explain the problem you're experiencing in more detail?"
+    - text: "Tell me more about the issue. What exactly is happening with your security system?"
+    - text: "I need a detailed description of the problem to properly document your reclamation."
+    - text: "Please provide as much detail as possible about the issue you're reporting."
+
+  utter_ask_email:
+    - text: "Please provide your email address so we can contact you about your reclamation."
+    - text: "What is your email address?"
+    - text: "Could you please share your email for updates?"
+    - text: "I'll need your email address to send you updates about your reclamation."
+    - text: "For communication purposes, please provide your email address."
+    - text: "What email should we use to contact you regarding this issue?"
+
+  utter_ask_phone:
+    - text: "Please provide your phone number for urgent matters."
+    - text: "What is your phone number?"
+    - text: "Could you please share your contact number?"
+    - text: "I'll need your phone number in case we need to reach you urgently."
+    - text: "For urgent updates, please provide your phone number."
+    - text: "What's the best phone number to reach you at?"
+
+  utter_goodbye:
+    - text: "Goodbye! Let us know if you need anything else."
+    - text: "Thank you for contacting Duraprotect Support. Have a great day!"
+    - text: "All set! Don't hesitate to reach out if you need further assistance."
+    - text: "Your reclamation has been submitted. We'll be in touch soon. Goodbye!"
+    - text: "Thanks for using Duraprotect Support. Stay secure!"
+
+  utter_ask_for_details:
+    - text: "I understand you're having an issue. Could you please describe the problem in more detail?"
+    - text: "What specific problem are you experiencing with your security system?"
+    - text: "Tell me more about what's not working properly."
+    - text: "I need to understand the issue better. Can you describe what's happening?"
+    - text: "Could you elaborate on the problem you're facing?"
+    - text: "Please give me more details about the issue so I can help you better."
+
+  utter_company_info:
+    - text: "Duraprotect is an innovative security startup specializing in comprehensive security solutions. We provide both physical security systems (cameras, alarms, access control) and cybersecurity services to protect your assets."
+    - text: "We're Duraprotect - a security technology company offering integrated protection solutions including physical security equipment and digital cybersecurity services."
+    - text: "Duraprotect provides complete security solutions combining hardware like cameras and alarms with software-based cybersecurity protection."
+    - text: "Our company focuses on delivering end-to-end security solutions, from physical surveillance systems to network security protection."
+
+  utter_company_history:
+    - text: "Duraprotect was founded in 2021 by security experts with over 15 years of industry experience. We started as a small startup focusing on integrated security solutions and have grown to serve over 500 clients in the past 3 years."
+    - text: "Founded in 2021 by veteran security professionals, Duraprotect began as a startup and has expanded to serve hundreds of clients with our integrated security approach."
+    - text: "We started our journey in 2021 with a vision to create unified security solutions. Today, we protect over 500 businesses and homes."
+    - text: "Since our founding in 2021, we've combined decades of security expertise to build a company that serves more than 500 satisfied clients."
+
+  utter_company_services:
+    - text: "We offer: 🔒 Physical Security: Installation of cameras, alarms, access control systems. 🛡️ Cybersecurity: Threat detection, network security, monitoring. 🏢 Integrated Solutions: Custom security systems for businesses and homes. 🔧 Maintenance & Support: 24/7 technical assistance and regular maintenance."
+    - text: "Our services include: 1. Physical security systems (cameras, alarms) 2. Cybersecurity protection 3. Custom integrated solutions 4. Ongoing maintenance and support"
+    - text: "We provide: • Security camera installation • Alarm systems • Access control • Cybersecurity services • Custom security packages • 24/7 support"
+    - text: "Services available: - Security equipment installation - Network security - Threat monitoring - System integration - Technical support"
+
+  utter_contact:
+    - text: "You can contact us at: 📞 Support Hotline: +1-800-DURA-PRO (387-2776) 📧 Email: support@duraprotect.com 🌐 Website: www.duraprotect.com 📍 Office: 123 Security Plaza, Tech City. Hours: Mon-Fri 8AM-8PM."
+    - text: "Contact information: Phone: 1-800-DURA-PRO, Email: support@duraprotect.com, Website: duraprotect.com, Address: 123 Security Plaza"
+    - text: "Reach us via: Support line: 1-800-387-2776, Email support, or visit our website at www.duraprotect.com"
+    - text: "Get in touch: Call 1-800-DURA-PRO, email support@duraprotect.com, or check our website for more options."
+
+  utter_company_values:
+    - text: "Our core values: 1️⃣ Reliability - Our systems never sleep. 2️⃣ Innovation - We use cutting-edge security tech. 3️⃣ Integrity - Transparent and honest service. 4️⃣ Customer Focus - Your security is our priority."
+    - text: "We believe in: Reliability through constant vigilance, Innovation in security technology, Integrity in all our dealings, and putting Customers first."
+    - text: "Our principles: Always reliable, constantly innovating, completely transparent, and customer-centered."
+    - text: "Values that guide us: 1. Dependability 2. Technological advancement 3. Honesty 4. Client satisfaction"
+
+  utter_company_mission:
+    - text: "Our mission is to make advanced security accessible to everyone. We believe in proactive protection through smart technology that prevents threats before they happen."
+    - text: "We aim to democratize security technology, making sophisticated protection available to all through proactive, intelligent systems."
+    - text: "Our goal is to provide accessible, cutting-edge security that anticipates and prevents threats before they occur."
+    - text: "We're committed to delivering preventative security solutions that are accessible to businesses and individuals alike."
+
+  utter_product_support:
+    - text: "For product support, you can: 1. File a reclamation using our chat system. 2. Call our support line for immediate assistance. 3. Schedule a technician visit. 4. Access our online troubleshooting guides at help.duraprotect.com"
+    - text: "Support options: Chat with me to file issues, call our hotline, schedule onsite visits, or check our online help resources."
+    - text: "Need help? You can report issues here, call us directly, book technician visits, or use our online knowledge base."
+    - text: "Get support by: 1. Filing a reclamation 2. Calling 1-800-DURA-PRO 3. Booking a technician 4. Visiting help.duraprotect.com"
+
+  utter_system_security_questions:
+    - text: "We use multiple security layers: 🔐 AES-256 encryption for all data, 🚨 AI-powered threat detection, 🔍 24/7 monitoring by our security team, 🛡️ Multi-factor authentication, 🔄 Regular security updates and patches."
+    - text: "Our security measures include: Military-grade encryption, AI threat detection, round-the-clock monitoring, multi-factor authentication, and continuous updates."
+    - text: "Security features: AES-256 encryption, artificial intelligence monitoring, 24/7 surveillance, MFA protection, and regular system updates."
+    - text: "We protect with: Top-level encryption, intelligent threat detection, constant monitoring, authentication layers, and timely updates."
+
+  utter_ask_track_reclamation:
+    - text: "I can help you track your reclamation. Please provide your username."
+    - text: "To check your reclamation status, I'll need your username first."
+    - text: "Let me look up your reclamation. What's your username?"
+    - text: "For tracking purposes, I need your username to find your reclamation."
+    - text: "Please share your username so I can check your reclamation status."
+
+  utter_ask_reclamation_id:
+    - text: "Please provide your reclamation ID number."
+    - text: "What is your reclamation ID?"
+    - text: "I need your reclamation ID to look up the specific case."
+    - text: "Could you share your reclamation ID with me?"
+    - text: "Please enter your reclamation ID number."
+
+  utter_no_reclamations_found:
+    - text: "I couldn't find any reclamations for username '{username}'. Did you submit a reclamation with this username?"
+    - text: "No reclamations found for '{username}'. Please check your username and try again."
+    - text: "No records found for username '{username}'. Verify the username and try again."
+    - text: "I don't see any reclamations under '{username}'. Make sure you're using the correct username."
+    - text: "Search returned no results for '{username}'. Please confirm the username is accurate."
+
+  utter_reclamation_status:
+    - text: "📊 **Reclamation #{id}**\nStatus: **{status}**\nPriority: **{priority}**\nCreated: {created_date} ({days_ago} days ago)\n\nMessage: {message_preview}\n\nAdmin Notes: {admin_notes}"
+    - text: "Here's your reclamation status:\nID: #{id}\nCurrent Status: {status}\nPriority Level: {priority}\nDate Filed: {created_date}\nIssue Summary: {message_preview}\nNotes: {admin_notes}"
+    - text: "Reclamation Details:\n• ID: #{id}\n• Status: {status}\n• Priority: {priority}\n• Created: {created_date}\n• Issue: {message_preview}\n• Updates: {admin_notes}"
+
+  utter_reclamation_summary:
+    - text: "📈 **Summary for {username}**\nTotal Reclamations: {total}\n✅ Resolved: {resolved}\n⏳ Pending: {pending}\n🚨 Urgent: {urgent}"
+    - text: "Reclamation Summary for {username}:\nTotal Cases: {total}\nResolved: {resolved}\nPending: {pending}\nUrgent: {urgent}"
+    - text: "Here's an overview for {username}:\n• Total reclamations: {total}\n• Closed: {resolved}\n• Open: {pending}\n• High priority: {urgent}"
+
+actions:
+  - action_submit_reclamation
+  - validate_reclamation_form
+  - action_track_reclamation
+  - action_check_reclamation_id
