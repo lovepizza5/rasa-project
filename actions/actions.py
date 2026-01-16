@@ -149,11 +149,11 @@ class ActionSubmitReclamation(Action):
                 # Build success message
                 success_message = (
                     f"✅ Reclamation submitted successfully!{contact_info}\n\n"
-                    f"📋 **Reclamation ID:** #{reclamation_id}\n"
-                    f"👤 **Username:** {username}\n"
-                    f"📝 **Issue:** {reclamation_message[:100]}...\n"
-                    f"🚨 **Priority:** {priority}\n"
-                    f"😊 **Sentiment:** {sentiment}\n\n"
+                    f" **Reclamation ID:** #{reclamation_id}\n"
+                    f" **Username:** {username}\n"
+                    f" **Issue:** {reclamation_message[:100]}...\n"
+                    f" **Priority:** {priority}\n"
+                    f" **Sentiment:** {sentiment}\n\n"
                     f"We will review your issue and contact you soon."
                 )
 
